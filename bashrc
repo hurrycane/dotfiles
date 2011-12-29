@@ -40,6 +40,18 @@ function parse_git_branch {
   echo "$(parse_git_dirty)$(__git_ps1 '%s')"
 }
 
+force_color_prompt=yes
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 export LSCOLORS='Exfxcxdxbxegedabagacad'
 
 if [ "$color_prompt" = yes ]; then
@@ -48,3 +60,4 @@ else
   PS1="\u@\H \w \$(parse_git_branch)\n> "
 fi
 unset color_prompt
+

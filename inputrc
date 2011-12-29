@@ -6,8 +6,8 @@
 "\e[5D": backward-word
 
 # These allow you to start typing a command and use the up/down arrow to auto complete from commands in your history
-"\e[B": history-search-forward
-"\e[A": history-search-backward
+# "\e[B": history-search-forward
+# "\e[A": history-search-backward
 
 # This lets you hit tab to auto-complete a file or directory name ignoring case
 set completion-ignore-case On
