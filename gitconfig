@@ -1,0 +1,35 @@
+[github]
+	user = hurrycane
+	token = dab04da550c302907e71e238e5bfb3b3
+[user]
+	name = Bogdan Gaza
+	email = bogdan@mojotech.com
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+  l1 = log --pretty=oneline --abbrev-commit
+[core]
+	quotepath = false
+	excludesfile = $HOME/.gitignore
+
