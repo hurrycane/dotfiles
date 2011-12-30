@@ -5,6 +5,9 @@ export HISTSIZE=5000
 
 [[ -s "$HOME/.aliases.sh" ]] && source "$HOME/.aliases.sh"
 
+# Git completion
+[[ -s "$HOME/.git-completion.sh" ]] && source "$HOME/.git-completion.sh"
+
 # Don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
 # Ignore same sucessive entries.
