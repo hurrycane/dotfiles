@@ -1,0 +1,11 @@
+autodetach on
+startup_message       off
+defscrollback         4000
+caption always
+#caption string "%{rk} %c %{dd} %{b}%n%{dd}  %-w%n* %t%+w%<"
+caption always "%0=%{+b rk}%H %{bk}| %0L=%{mk}%>%-Lw%{= BW}%n%f* %t%{-}%+Lw%L>%?(%u)%? %{bk}|%>%=%{Yk} %=%C%A %Y.%m.%d %{bk}%100="
+#
+termcapinfo xterm* ti@:te@
+defutf8 on
+#
+term xterm-256color
