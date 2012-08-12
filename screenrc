@@ -3,7 +3,11 @@ startup_message       off
 defscrollback         4000
 caption always
 #caption string "%{rk} %c %{dd} %{b}%n%{dd}  %-w%n* %t%+w%<"
-caption always "%0=%{+b rk}%H %{bk}| %0L=%{mk}%>%-Lw%{= BW}%n%f* %t%{-}%+Lw%L>%?(%u)%? %{bk}|%>%=%{Yk} %=%C%A %Y.%m.%d %{bk}%100="
+#caption always "%0=%{+b rk}%H %{bk}| %0L=%{mk}%>%-Lw%{= BW}%n%f* %t%{-}%+Lw%L>%?(%u)%? %{bk}|%>%=%{Yk} %=%C%A %Y.%m.%d %{bk}%100="
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B}%Y-%m-%d %{W}%c %{g}]'
+#
+#caption    always        "%{+b rk}%H%{gk} |%c %{yk}%d.%m.%Y | %72=Load: %l %{wk}"
 #
 termcapinfo xterm* ti@:te@
 defutf8 on
