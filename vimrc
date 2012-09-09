@@ -22,7 +22,9 @@ set history=1000
 set ttyfast
 
 " Make backup file
-set nobackup
+set backup
+set backupdir=/tmp
+set directory=/tmp
 
 " Highlight search matches
 set hlsearch
@@ -43,6 +45,10 @@ endif
 au BufRead,BufNewFile *.maude set filetype=maude
 
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
 
+" magic
+call pathogen#infect()
 
+cmap w!! %!sudo tee > /dev/null 

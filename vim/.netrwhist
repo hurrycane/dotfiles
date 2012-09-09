@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/bogdan/Projects/chef-repo-bsc/cookbooks/hadoop-cdh-lite'
+let g:netrw_dirhist_2='/Users/bogdan/Projects/simplysocial-serverconfigs/chef/cookbooks'
+let g:netrw_dirhist_3='/Users/bogdan/Desktop/simplysocial-bot/bin'
+let g:netrw_dirhist_4='/Users/bogdan/Projects/simplysocial/simplysocial/facebook'
+let g:netrw_dirhist_5='/Users/bogdan/Projects/simplysocial-serverconfigs/chef'
+let g:netrw_dirhist_6='/Users/bogdan/Projects/kali-agent/kali-dashboard/routes'

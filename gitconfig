@@ -3,7 +3,7 @@
 	token = dab04da550c302907e71e238e5bfb3b3
 [user]
 	name = Bogdan Gaza
-	email = bogdan@mojotech.com
+	email = bogdan.gaza@yahoo.com
 [color]
   branch = auto
   diff = auto
@@ -27,9 +27,8 @@
   br = branch
   co = checkout
   df = diff
-  lg = log -p
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
   l1 = log --pretty=oneline --abbrev-commit
 [core]
 	quotepath = false
-	excludesfile = $HOME/.gitignore
-
+	excludesfile = ~/.gitignore
