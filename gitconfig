@@ -32,3 +32,5 @@
 [core]
 	quotepath = false
 	excludesfile = ~/.gitignore
+[push]
+  default = tracking

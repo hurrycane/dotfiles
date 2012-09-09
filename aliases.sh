@@ -7,3 +7,6 @@ alias prettify_json='python -mjson.tool'
 alias reload='source ~/.bashrc'
 alias whitespace='find . -not \( -name .svn -prune -o -name .git -prune \) -type f -print0 | xargs -0 sed -i "" -E "s/[[:space:]]*$//"'
 
+alias o='open . &'
+alias p='cd ~/Projects'
+alias gs='git status'
