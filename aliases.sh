@@ -10,3 +10,4 @@ alias whitespace='find . -not \( -name .svn -prune -o -name .git -prune \) -type
 alias o='open . &'
 alias p='cd ~/Projects'
 alias gs='git status'
+alias load_py='source /usr/local/bin/virtualenvwrapper.sh'

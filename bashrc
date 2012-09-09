@@ -57,10 +57,34 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 export LSCOLORS='Exfxcxdxbxegedabagacad'
 
-if [ "$color_prompt" = yes ]; then
-  PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\H \[$(tput setaf 4)\]\w\[$(tput setaf 3)\] \$(parse_git_branch)\[$(tput sgr0)\]\n\[$(tput bold)\]\[$(tput setaf 1)\] \[$(tput sgr0)\]> "
-else
-  PS1="\u@\H \w \$(parse_git_branch)\n> "
-fi
+PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\H \[$(tput setaf 4)\]\w\[$(tput setaf 3)\] \$(parse_git_branch)\[$(tput sgr0)\]\n\[$(tput bold)\]\[$(tput setaf 1)\]\[$(tput sgr0)\]> "
+
 unset color_prompt
 
+PATH=$PATH:/Users/bogdan/node_modules/coffee-script/bin
+
+export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.4/jars"
+
+export JAVA_HOME="$(/usr/libexec/java_home)"
+
+export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
+export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
+export EC2_URL="https://eu-west-1.ec2.amazonaws.com"
+
+# export EC2_URL="https://eu-west-1.ec2.amazonaws.com"
+
+if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
+    update_terminal_cwd() {
+        # Identify the directory using a "file:" scheme URL,
+        # including the host name to disambiguate local vs.
+        # remote connections. Percent-escape spaces.
+	local SEARCH=' '
+	local REPLACE='%20'
+	local PWD_URL="file://$HOSTNAME${PWD//$SEARCH/$REPLACE}"
+	printf '\e]7;%s\a' "$PWD_URL"
+    }
+    PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
+fi
+
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
