@@ -3,6 +3,9 @@ export EDITOR=`which vim`
 export PROMPT_COMMAND="history -a"
 export HISTSIZE=5000
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 [[ -s "$HOME/.aliases.sh" ]] && source "$HOME/.aliases.sh"
 
 # Git completion
@@ -57,7 +60,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 export LSCOLORS='Exfxcxdxbxegedabagacad'
 
-PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\H \[$(tput setaf 4)\]\w\[$(tput setaf 3)\] \$(parse_git_branch)\[$(tput sgr0)\]\n\[$(tput bold)\]\[$(tput setaf 1)\]\[$(tput sgr0)\]> "
+PS1="\[$(tput bold)\]\[$(tput setaf 2)\]\u@\H \[$(tput setaf 4)\]\w\[\e[31;1m\] \$(parse_git_branch)\[\e[0m\]\n\[$(tput bold)\]\[$(tput setaf 1)\]\[$(tput sgr0)\]> "
 
 unset color_prompt
 
@@ -67,8 +70,8 @@ export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.4/jars"
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 
-export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/pk-*.pem)"
-export EC2_CERT="$(/bin/ls $HOME/.ec2/cert-*.pem)"
+export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ssh/pk-*.pem)"
+export EC2_CERT="$(/bin/ls $HOME/.ssh/cert-*.pem)"
 export EC2_URL="https://eu-west-1.ec2.amazonaws.com"
 
 # export EC2_URL="https://eu-west-1.ec2.amazonaws.com"
@@ -88,3 +91,17 @@ fi
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+PATH="/usr/local/bin":$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH=/usr/local/share/python:$PATH
+
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+eval `dircolors /Users/bogdan/Projects/dotfiles/dircolors-solarized/dircolors.256dark`
+
+source /usr/local/bin/virtualenvwrapper.sh
+
+export ONE_AUTH="$HOME/.one/one_auth"
+export ONE_XMLRPC="https://api.one.gamma.gosimplysocial.com/"

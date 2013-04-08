@@ -13,3 +13,4 @@ termcapinfo xterm* ti@:te@
 defutf8 on
 #
 term xterm-256color
+escape ^Ww
