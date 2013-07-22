@@ -9,6 +9,15 @@ set showmatch
 set scrolloff=5
 set autowrite
 
+set cursorline
+set synmaxcol=800   " don't try to highlight long lines
+
+set list
+set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮
+set showbreak=↪\
+
+set backspace=indent,eol,start  " backspace through everything in insert mode
+
 syntax on
 filetype on
 filetype indent on
@@ -16,7 +25,7 @@ filetype plugin on
 
 set nu
 set ai
-set history=1000 
+set history=1000
 
 " Yes, we have a fast terminal
 set ttyfast
@@ -31,6 +40,13 @@ set hlsearch
 
 set noequalalways
 set splitbelow
+
+" Avoid showing trailing whitespace when in insert mode
+au InsertEnter * set listchars-=trail:•
+au InsertLeave * set listchars+=trail:•
+
+" clear the search buffer when hitting return
+nnoremap <CR> :nohlsearch<CR>
 
 " Open where I left off
 set viminfo='1000,\"1000,:20,%,n~/.viminfo
@@ -47,9 +63,6 @@ au BufRead,BufNewFile *.maude set filetype=maude
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
-
-" magic
-call pathogen#infect()
 
 cmap w!! %!sudo tee > /dev/null 
 
@@ -68,3 +81,13 @@ let NERDTreeIgnore = ['\.pyc$']
 " imap <left> <nop>
 " imap <right> <nop>
 set ruler
+set wrap
+set textwidth=80
+set formatoptions=qrn1
+set colorcolumn=80
+
+set backspace=2
+set backspace=indent,eol,start
+
+" magic
+call pathogen#infect()
