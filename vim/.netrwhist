@@ -1,8 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/bogdan/Projects/simplysocial-tools/tools'
-let g:netrw_dirhist_2='/Users/bogdan/Dropbox/teme/PH_X_FINAL'
-let g:netrw_dirhist_3='/Users/bogdan/Dropbox/our folder'
-let g:netrw_dirhist_4='/Users/bogdan/Projects/simplysocial-scheduler/scheduler_admin'
-let g:netrw_dirhist_5='/Users/bogdan/Projects/simplysocial-scheduler'
-let g:netrw_dirhist_6='/Users/bogdan/Projects/simplysocial-arcade/arcade'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/bogdan/Projects/surge-webapp/app/views'
+let g:netrw_dirhist_2='/Users/bogdan/Projects/surge/db/migrate'
+let g:netrw_dirhist_3='/Users/bogdan/Projects/surge/app/controllers'

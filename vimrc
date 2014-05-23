@@ -23,6 +23,8 @@ filetype on
 filetype indent on
 filetype plugin on
 
+set omnifunc=syntaxcomplete#Complete
+
 set nu
 set ai
 set history=1000

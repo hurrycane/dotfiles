@@ -10,6 +10,7 @@ export LANG=en_US.UTF-8
 
 # Git completion
 [[ -s "$HOME/.git-completion.sh" ]] && source "$HOME/.git-completion.sh"
+[[ -s "$HOME/Projects/django/extras/django_bash_completion" ]] && source "$HOME/Projects/django/extras/django_bash_completion"
 
 # Don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -90,10 +91,6 @@ if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
 fi
 
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-
-PATH="/usr/local/bin":$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH=/usr/local/share/python:$PATH
@@ -105,3 +102,16 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 export ONE_AUTH="$HOME/.one/one_auth"
 export ONE_XMLRPC="https://api.one.gamma.gosimplysocial.com/"
+export PYTHONPATH=$PYTHONPATH:/Users/bogdan/Projects/simplysocial-workers/thirdparty/gdata
+
+eval "$(rbenv init -)"
+
+export SES_USERNAME="AKIAIJAKLTHGL57RZECQ"
+export SES_PASSWORD="AiGbhhSHEy7u2eaZQRahvAntdgTuE2He5dbp97e0lvS+"
+
+export AWS_ACCESS_KEY_ID="AKIAJH2VUEAOWUGAYHUA"
+export AWS_SECRET_ACCESS_KEY="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"
+
+export AWS_BUCKET="backers-avatar"
+
+export PATH="/usr/local/play":$PATH
