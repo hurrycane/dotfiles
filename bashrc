@@ -48,9 +48,10 @@ function parse_git_branch {
 }
 
 force_color_prompt=yes
+
+export PATH="/usr/local/bin":$PATH
 # enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if [ -x /usr/local/opt/coreutils/libexec/gnubin/dircolors ]; then
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -69,7 +70,7 @@ PATH=$PATH:/Users/bogdan/node_modules/coffee-script/bin
 
 export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.4/jars"
 
-export JAVA_HOME="$(/usr/libexec/java_home)"
+export JAVA_HOME=\"/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home\"
 
 export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ssh/pk-*.pem)"
 export EC2_CERT="$(/bin/ls $HOME/.ssh/cert-*.pem)"
@@ -104,8 +105,6 @@ export ONE_AUTH="$HOME/.one/one_auth"
 export ONE_XMLRPC="https://api.one.gamma.gosimplysocial.com/"
 export PYTHONPATH=$PYTHONPATH:/Users/bogdan/Projects/simplysocial-workers/thirdparty/gdata
 
-eval "$(rbenv init -)"
-
 export SES_USERNAME="AKIAIJAKLTHGL57RZECQ"
 export SES_PASSWORD="AiGbhhSHEy7u2eaZQRahvAntdgTuE2He5dbp97e0lvS+"
 
@@ -114,4 +113,10 @@ export AWS_SECRET_ACCESS_KEY="E7gUwXxaA3rZ1mDiJ5Ykk/KcwBsLHF3W4DbkxLC7"
 
 export AWS_BUCKET="backers-avatar"
 
-export PATH="/usr/local/play":$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
+
+export GOPATH="/Users/bogdan/Projects/hurrycane/logstash"
+export PATH=$PATH:"/usr/local/lib/gopath/bin"
+
+eval "$(rbenv init -)"
