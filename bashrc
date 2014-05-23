@@ -72,11 +72,7 @@ export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.2.4/jars"
 
 export JAVA_HOME=\"/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home\"
 
-export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ssh/pk-*.pem)"
-export EC2_CERT="$(/bin/ls $HOME/.ssh/cert-*.pem)"
 export EC2_URL="https://eu-west-1.ec2.amazonaws.com"
-
-# export EC2_URL="https://eu-west-1.ec2.amazonaws.com"
 
 if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
     update_terminal_cwd() {
@@ -104,14 +100,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 export ONE_AUTH="$HOME/.one/one_auth"
 export ONE_XMLRPC="https://api.one.gamma.gosimplysocial.com/"
 export PYTHONPATH=$PYTHONPATH:/Users/bogdan/Projects/simplysocial-workers/thirdparty/gdata
-
-export SES_USERNAME="AKIAIJAKLTHGL57RZECQ"
-export SES_PASSWORD="AiGbhhSHEy7u2eaZQRahvAntdgTuE2He5dbp97e0lvS+"
-
-export AWS_ACCESS_KEY_ID="AKIAJH2VUEAOWUGAYHUA"
-export AWS_SECRET_ACCESS_KEY="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"
-
-export AWS_BUCKET="backers-avatar"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
