@@ -12,3 +12,9 @@ alias p='cd ~/Projects'
 alias gs='git status'
 alias load_py='source /usr/local/bin/virtualenvwrapper.sh'
 alias p='python'
+
+alias fetch="git co master && git fetch && git pull --rebase"
+alias docker_clean='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi $(docker images -q)'
+alias docker_stop='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
+alias s="cd ~/Projects"
