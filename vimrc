@@ -1,5 +1,5 @@
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
 set autoindent
@@ -84,9 +84,9 @@ let NERDTreeIgnore = ['\.pyc$']
 " imap <right> <nop>
 set ruler
 set wrap
-set textwidth=80
+set textwidth=120
 set formatoptions=qrn1
-set colorcolumn=80
+set colorcolumn=120
 
 set backspace=2
 set backspace=indent,eol,start
