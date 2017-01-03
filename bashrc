@@ -6,6 +6,8 @@ export HISTSIZE=5000
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+export TERM=xterm-256color
+
 [[ -s "$HOME/.aliases.sh" ]] && source "$HOME/.aliases.sh"
 
 # Bash completion (usually includes git completion)
@@ -76,7 +78,6 @@ if [ "$TERM_PROGRAM" == "Apple_Terminal" ] && [ -z "$INSIDE_EMACS" ]; then
     }
     PROMPT_COMMAND="update_terminal_cwd; $PROMPT_COMMAND"
 fi
-
 
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 eval `dircolors /Users/bogdan/Projects/dotfiles/dircolors-solarized/dircolors.256dark`
