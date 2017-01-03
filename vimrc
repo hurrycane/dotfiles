@@ -19,6 +19,8 @@ set list
 set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮
 set showbreak=↪\
 
+set laststatus=2
+
 set backspace=indent,eol,start  " backspace through everything in insert mode
 
 syntax on
@@ -61,6 +63,10 @@ if has('gui_running')
   set background=dark
   colorscheme solarized
   set guifont=AndaleMono:h14.00
+endif
+
+if !has('gui_running')
+  set t_Co=256
 endif
 
 au BufRead,BufNewFile *.maude set filetype=maude
