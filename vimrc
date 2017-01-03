@@ -20,6 +20,7 @@ set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮
 set showbreak=↪\
 
 set laststatus=2
+set nocompatible
 
 set backspace=indent,eol,start  " backspace through everything in insert mode
 
