@@ -1,3 +1,6 @@
+" Init pathogen
+execute pathogen#infect()
+
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -90,6 +93,3 @@ set colorcolumn=120
 
 set backspace=2
 set backspace=indent,eol,start
-
-" magic
-call pathogen#infect()
