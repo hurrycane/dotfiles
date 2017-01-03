@@ -80,3 +80,17 @@ fi
 
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 eval `dircolors /Users/bogdan/Projects/dotfiles/dircolors-solarized/dircolors.256dark`
+
+# rbenv
+export RBENV_ROOT=/usr/local/var/rbenv
+eval "$(rbenv init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /Users/bogdan/Projects/google-cloud-sdk/path.bash.inc ]; then
+  source '/Users/bogdan/Projects/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /Users/bogdan/Projects/google-cloud-sdk/completion.bash.inc ]; then
+  source '/Users/bogdan/Projects/google-cloud-sdk/completion.bash.inc'
+fi
