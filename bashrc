@@ -95,3 +95,7 @@ fi
 if [ -f /Users/bogdan/Projects/google-cloud-sdk/completion.bash.inc ]; then
   source '/Users/bogdan/Projects/google-cloud-sdk/completion.bash.inc'
 fi
+
+if [ -f source /usr/local/bin/virtualenvwrapper.sh ]; then
+  source 'source /usr/local/bin/virtualenvwrapper.sh'
+fi
