@@ -9,6 +9,9 @@ These is a collection of my dot files.
 
 # Init submodules
 git submodule update --init --recursive
+
+# Update submodules to latest (from time to time)
+git submodule update --remote --merge
 ```
 
 ## <a name="inspiration"></a>Inspiration
