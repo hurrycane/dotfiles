@@ -127,3 +127,12 @@ else
 endif
 
 let g:tmuxline_preset = 'tmux'
+
+let mapleader=","
+
+" NERDTree Mappins
+" Open Nerd Tree with <Leader>n
+map <Leader>n <esc>:NERDTreeToggle<cr>
+
+" Reveal current file in NERDTree with <Leader>r
+map <Leader>r <esc>:NERDTreeFind<cr>
