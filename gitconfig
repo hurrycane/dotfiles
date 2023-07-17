@@ -1,6 +1,6 @@
 [github]
-	user = hurrycane
-	token = b81a3611c6ac456c33433ce16ceb2ee4fb0cd30d
+  user = hurrycane
+  token = b81a3611c6ac456c33433ce16ceb2ee4fb0cd30d
 [user]
   name = Bogdan Gaza
   email = bc.gaza@gmail.com
@@ -32,18 +32,15 @@
 [core]
   quotepath = false
   excludesfile = ~/.gitignore
+  pager = delta
 [push]
   default = tracking
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[diff]
-  tool = Kaleidoscope
-[difftool]
-  prompt = false
-[mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-  trustExitCode = true
-[mergetool]
-  prompt = false
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 [merge]
-  tool = Kaleidoscope
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
