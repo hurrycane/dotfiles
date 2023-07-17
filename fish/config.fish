@@ -4,12 +4,8 @@ set -x EDITOR (which vim)
 set -x PATH /opt/homebrew/bin $PATH
 set -x PATH /opt/homebrew/sbin $PATH
 
-status --is-interactive; and source (rbenv init -|psub)
+# status --is-interactive; and ~/.rbenv/bin/rbenv init - fish | source
 
 set fish_greeting ""
 
-set -x PATH /Applications/Postgres.app/Contents/Versions/latest/bin $PATH
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/Projects/misc/google-cloud-sdk/path.fish.inc" ]; . "$HOME/Projects/misc/google-cloud-sdk/path.fish.inc"; end
-fish_add_path /opt/homebrew/opt/node@14/bin
+starship init fish | source
