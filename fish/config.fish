@@ -3,6 +3,7 @@ set -x EDITOR (which vim)
 # Set paths needed for homebrew
 set -x PATH /opt/homebrew/bin $PATH
 set -x PATH /opt/homebrew/sbin $PATH
+set -x PATH /opt/homebrew/lib $PATH
 
 # status --is-interactive; and ~/.rbenv/bin/rbenv init - fish | source
 
