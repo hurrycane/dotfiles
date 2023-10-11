@@ -14,5 +14,10 @@ git submodule update --init --recursive
 git submodule update --remote --merge
 ```
 
+## Dependencies
+Preferred font: Moncao Nerd Font Mono - Regular - 18
+https://github.com/dandavison/delta
+https://starship.rs/
+
 ## <a name="inspiration"></a>Inspiration
 Kudos to [Erik Michaels-Ober](https://github.com/sferik/dotfiles/) and [Ryan Bates](https://github.com/ryanb/dotfiles).
