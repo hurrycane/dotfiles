@@ -112,6 +112,13 @@ back in or the pin silently goes stale.
 chezmoi add ~/.config/nvim/lazy-lock.json
 ```
 
+`lua/plugins/luarocks.lua` names `luarocks/hererocks` explicitly. lazy.nvim only
+bootstraps it when some plugin declares `build = "rockspec"`, so without that
+line luarocks is enabled in name only and `:checkhealth` reports it missing.
+hererocks compiles its own Lua 5.1 under `~/.local/share/nvim/lazy-rocks`, which
+is the only workable route on macOS — Homebrew ships lua 5.5 and has no
+`lua@5.1`, so `rocks.hererocks = false` cannot satisfy lazy's 5.1 requirement.
+
 ## Dependencies
 
 Installed by the `run_once` script. Shell: fish, starship, direnv, tmux, neovim

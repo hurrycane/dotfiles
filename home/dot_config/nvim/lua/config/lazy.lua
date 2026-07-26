@@ -31,10 +31,6 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  -- No plugin in this config needs luarocks (lazy's own health check says so),
-  -- but the hererocks bootstrap still fails loudly in :checkhealth. Turning the
-  -- support off removes the check rather than papering over it.
-  rocks = { enabled = false },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
