@@ -17,6 +17,16 @@ PACKAGES=(
     direnv
     tmux
     neovim
+    # LazyVim's recommended companions: lazygit backs its <leader>gg git UI,
+    # tree-sitter-cli lets it build parsers that ship no prebuilt grammar.
+    # fd and ripgrep are already below -- LazyVim wants those too.
+    lazygit
+    tree-sitter-cli
+    # ast-grep backs grug-far's structural search; wget is mason's fallback
+    # downloader when curl is unavailable. Both only surface as :checkhealth
+    # warnings, but they are cheap to have.
+    ast-grep
+    wget
     eza
     bat
     fd

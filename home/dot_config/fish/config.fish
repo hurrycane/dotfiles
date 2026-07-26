@@ -1,5 +1,3 @@
-# Set default editor
-set -x EDITOR (which vim)
 # Set paths needed for homebrew
 set -x PATH /opt/homebrew/bin $PATH
 set -x PATH /opt/homebrew/sbin $PATH
@@ -19,6 +17,32 @@ if test -d /opt/homebrew/opt/llvm/bin
     fish_add_path /opt/homebrew/opt/llvm/bin
     set -gx LDFLAGS "-L/opt/homebrew/opt/llvm/lib"
     set -gx CPPFLAGS "-I/opt/homebrew/opt/llvm/include"
+end
+
+# openjdk is keg-only, so nothing is symlinked into /opt/homebrew/bin -- the bin
+# dir has to go on PATH explicitly. JAVA_HOME is not in brew's caveats but most
+# JVM tooling looks for it, and for a keg-only cask it points at libexec.
+if test -d /opt/homebrew/opt/openjdk@21
+    fish_add_path /opt/homebrew/opt/openjdk@21/bin
+    set -gx JAVA_HOME /opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
+    # Append, do not assign: the llvm block above already owns CPPFLAGS and a
+    # plain `set -gx` here would silently drop its include path. string trim
+    # keeps the leading space out when CPPFLAGS starts empty; the `--` matters,
+    # since without it an existing value starting with -I is read as an option.
+    set -gx CPPFLAGS (string trim -- "$CPPFLAGS -I/opt/homebrew/opt/openjdk@21/include")
+end
+
+# Editor. This has to come *after* the PATH work above -- it used to be the very
+# first line of this file, which meant it ran before /opt/homebrew was on PATH
+# and so could only ever find Apple's /usr/bin/vim, never brew's nvim.
+if command -q nvim
+    set -gx EDITOR nvim
+else if command -q vim
+    set -gx EDITOR vim
+end
+
+if set -q EDITOR
+    set -gx VISUAL $EDITOR
 end
 
 # Guarded so a machine without these installed still gets a working shell.

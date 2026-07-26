@@ -89,6 +89,7 @@ home/
     fish/config.fish         PATH, CLI stack init
     fish/conf.d/colors.fish  fish colors
     fish/functions/          fetch, fish_prompt
+    nvim/                    LazyVim starter + lazy-lock.json
 ```
 
 Two things are deliberately **not** managed, listed in `home/.chezmoiignore`:
@@ -96,6 +97,20 @@ Two things are deliberately **not** managed, listed in `home/.chezmoiignore`:
 itself, so tracking them means permanent phantom drift in `chezmoi diff`. The
 colors that used to live in `fish_variables` are now set explicitly in
 `conf.d/colors.fish`.
+
+## Neovim
+
+The [LazyVim starter](https://www.lazyvim.org/installation) is tracked directly
+rather than cloned, so `chezmoi apply` writes it and a new machine needs no
+per-machine `git clone`. Plugins install themselves on first `nvim` launch.
+
+`lazy-lock.json` **is** tracked, which pins plugin versions across machines. The
+catch: after `:Lazy update` the new lock file lives only in `$HOME`, so pull it
+back in or the pin silently goes stale.
+
+```
+chezmoi add ~/.config/nvim/lazy-lock.json
+```
 
 ## Dependencies
 
@@ -122,13 +137,6 @@ as-is, since bat/dust/fd/rg take incompatible flags.
 
 Brew-installed completions need no setup: fish already carries
 `/opt/homebrew/share/fish/vendor_completions.d` in `$fish_complete_path`.
-
-## Editor
-
-`vim` is Apple's `/usr/bin/vim` and `$EDITOR` points at it. `dot_vimrc` is a
-plain config with no plugin manager — pathogen and the vim plugin submodules
-(NERDTree, lightline, vim-go, tmuxline, vim-tmux-navigator) were removed in
-favour of starting fresh on neovim. There is no neovim config in this repo yet.
 
 ## <a name="inspiration"></a>Inspiration
 
