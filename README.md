@@ -98,33 +98,13 @@ itself, so tracking them means permanent phantom drift in `chezmoi diff`. The
 colors that used to live in `fish_variables` are now set explicitly in
 `conf.d/colors.fish`.
 
-## Neovim
-
-The [LazyVim starter](https://www.lazyvim.org/installation) is tracked directly
-rather than cloned, so `chezmoi apply` writes it and a new machine needs no
-per-machine `git clone`. Plugins install themselves on first `nvim` launch.
-
-`lazy-lock.json` **is** tracked, which pins plugin versions across machines. The
-catch: after `:Lazy update` the new lock file lives only in `$HOME`, so pull it
-back in or the pin silently goes stale.
-
-```
-chezmoi add ~/.config/nvim/lazy-lock.json
-```
-
-`lua/plugins/luarocks.lua` names `luarocks/hererocks` explicitly. lazy.nvim only
-bootstraps it when some plugin declares `build = "rockspec"`, so without that
-line luarocks is enabled in name only and `:checkhealth` reports it missing.
-hererocks compiles its own Lua 5.1 under `~/.local/share/nvim/lazy-rocks`, which
-is the only workable route on macOS — Homebrew ships lua 5.5 and has no
-`lua@5.1`, so `rocks.hererocks = false` cannot satisfy lazy's 5.1 requirement.
-
 ## Dependencies
 
 Installed by the `run_once` script. Shell: fish, starship, direnv, tmux, neovim
 (`reattach-to-user-namespace` is optional; `tmux.conf` only uses it if present).
 
-CLI stack — see **[CHEATSHEET.md](CHEATSHEET.md)** for ten day-to-day uses each:
+CLI stack — see **[CHEATSHEET.md](CHEATSHEET.md)** for ten day-to-day uses each
+(it predates `ast-grep` and `wget`, which have no entries there yet):
 
 | tool | replaces | notes |
 | --- | --- | --- |
@@ -132,15 +112,21 @@ CLI stack — see **[CHEATSHEET.md](CHEATSHEET.md)** for ten day-to-day uses eac
 | [bat](https://github.com/sharkdp/bat) | `cat` | also the `MANPAGER` |
 | [fd](https://github.com/sharkdp/fd) | `find` | backs `FZF_DEFAULT_COMMAND` |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | `grep` | `rg` |
+| [ast-grep](https://ast-grep.github.io/) | — | `sg`; structural search/rewrite, where `rg` is line-based |
 | [zoxide](https://github.com/ajeetdsouza/zoxide) | `cd` | `z`, `zi` |
 | [fzf](https://github.com/junegunn/fzf) | — | `ctrl-t` files, `alt-c` cd |
 | [atuin](https://atuin.sh/) | history | owns `ctrl-r`; up-arrow left to fish |
 | [git-delta](https://github.com/dandavison/delta) | `git diff` | wired up in `dot_gitconfig` |
 | [dust](https://github.com/bootandy/dust) | `du` | `dust` |
+| [wget](https://www.gnu.org/software/wget/) | — | downloader; also mason.nvim's curl fallback |
 | [chezmoi](https://chezmoi.io/) | — | manages this repo |
 
 Only `ls` shadows its classic command — `cat`, `du`, `find` and `grep` are left
 as-is, since bat/dust/fd/rg take incompatible flags.
+
+Not in the list on purpose: `openjdk@21`. `config.fish` wires up its PATH,
+`JAVA_HOME` and `CPPFLAGS` when it is present, but a JDK is machine-specific, so
+the `test -d` guard just skips the block on machines without one.
 
 Brew-installed completions need no setup: fish already carries
 `/opt/homebrew/share/fish/vendor_completions.d` in `$fish_complete_path`.

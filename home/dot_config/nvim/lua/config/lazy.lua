@@ -1,3 +1,10 @@
+-- This whole directory is managed by chezmoi, so it is a copy of the repo rather
+-- than a git clone of the LazyVim starter. One consequence worth remembering:
+-- `lazy-lock.json` is tracked to pin plugin versions, but after `:Lazy update`
+-- the new lock file exists only in $HOME. Pull it back or the pin goes stale:
+--
+--   chezmoi add ~/.config/nvim/lazy-lock.json
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
