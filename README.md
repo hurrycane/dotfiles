@@ -1,4 +1,4 @@
-# Bogdan Gaza's Dotfiles
+# Bogdan's Dotfiles
 
 Managed with [chezmoi](https://chezmoi.io/). Source of truth is `home/`, which
 mirrors `$HOME` using chezmoi's naming convention (`dot_vimrc` → `~/.vimrc`).
