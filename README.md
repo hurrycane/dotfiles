@@ -100,11 +100,13 @@ colors that used to live in `fish_variables` are now set explicitly in
 
 ## Dependencies
 
-Installed by the `run_once` script. Shell: fish, starship, direnv, tmux, neovim
-(`reattach-to-user-namespace` is optional; `tmux.conf` only uses it if present).
+Installed by the `run_once` script. Shell: [fish](https://fishshell.com/),
+[starship](https://starship.rs/), [direnv](https://direnv.net/),
+[tmux](https://github.com/tmux/tmux/wiki), [neovim](https://neovim.io/)
+([reattach-to-user-namespace](https://github.com/ChrisJohnsen/tmux-MacOSX-pasteboard)
+is optional; `tmux.conf` only uses it if present).
 
-CLI stack — see **[CHEATSHEET.md](CHEATSHEET.md)** for ten day-to-day uses of
-each except `wget`:
+CLI stack — see **[CHEATSHEET.md](CHEATSHEET.md)** for various tool uses:
 
 | tool | replaces | notes |
 | --- | --- | --- |
@@ -124,9 +126,10 @@ each except `wget`:
 Only `ls` shadows its classic command — `cat`, `du`, `find` and `grep` are left
 as-is, since bat/dust/fd/rg take incompatible flags.
 
-`openjdk@21` is deliberately absent. `config.fish` wires up its PATH,
-`JAVA_HOME` and `CPPFLAGS` when it is present, but a JDK is machine-specific, so
-the `test -d` guard skips the block on machines without one.
+[`openjdk@21`](https://openjdk.org/projects/jdk/21/) is deliberately absent.
+`config.fish` wires up its PATH, `JAVA_HOME` and `CPPFLAGS` when it is present,
+but a JDK is machine-specific, so the `test -d` guard skips the block on
+machines without one.
 
 Brew-installed completions need no setup: fish already carries
 `/opt/homebrew/share/fish/vendor_completions.d` in `$fish_complete_path`.
