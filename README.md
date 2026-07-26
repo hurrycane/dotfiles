@@ -88,7 +88,7 @@ home/
     starship.toml            prompt
     fish/config.fish         PATH, CLI stack init
     fish/conf.d/colors.fish  fish colors
-    fish/functions/          fetch, virtualfish, fish_prompt
+    fish/functions/          fetch, fish_prompt
 ```
 
 Two things are deliberately **not** managed, listed in `home/.chezmoiignore`:

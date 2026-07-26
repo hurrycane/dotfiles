@@ -1,4 +1,9 @@
-fish/functions/gcp.fish
-fish/fishd.*
-vim/.netrwhist
+# Bare filenames, no slashes: these match at any depth, so they survive the
+# source tree being rearranged.
+gcp.fish
+fish_variables
+fish_frozen_key_bindings.fish
+.netrwhist
+dot_netrwhist
+.viminfo
 .*.sw?

@@ -1,1 +1,0 @@
-eval (python -m virtualfish)
