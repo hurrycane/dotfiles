@@ -2,7 +2,8 @@
 
 Ten things worth knowing per tool, for day-to-day work. Everything here was
 checked against the versions in this setup: eza 0.23, bat 0.26, fd 10, ripgrep
-14, zoxide 0.10, fzf 0.74, atuin 18.17, delta 0.18, dust 1.
+14, ast-grep 0.45, zoxide 0.10, fzf 0.74, atuin 18.17, delta 0.18, dust 1,
+direnv 2.37, fish 4.8.
 
 Examples use fish syntax — command substitution is `(cmd)`, not `$(cmd)`.
 
@@ -85,6 +86,55 @@ Already wired as `FZF_DEFAULT_COMMAND`, so fzf's file lists respect `.gitignore`
 | 10 | `rg --passthru -r NEW OLD file` | Preview a whole-file substitution before committing to it. |
 
 `rg --stats pattern` for match/file counts; `rg --sort path` for stable output in scripts.
+
+---
+
+## ast-grep — structural `grep`
+
+Matches syntax trees, not lines, so formatting and line breaks stop mattering.
+Installed as both `ast-grep` and the shorter `sg`. `run` is the default command,
+so `sg -p …` is enough. Metavariables: `$X` captures one node, `$$$X` captures a
+variadic run of them, `$_` matches without capturing.
+
+| # | Command | Why |
+| --- | --- | --- |
+| 1 | `sg -p 'print($$$)' -l python` | Matches the call regardless of its arguments or wrapping. The everyday case. |
+| 2 | `sg -p 'foo($$$A)' -r 'bar($$$A)' -l python` | Rewrite while carrying the captured arguments across. |
+| 3 | `sg -p '…' -r '…' -U` | `-U`/`--update-all` writes the rewrite to disk. Without it you only see a diff. |
+| 4 | `sg -p '…' -i` | Interactive: accept or skip each match individually. Safer than `-U`. |
+| 5 | `sg -p 'if ($C) { $$$ }' -l ts` | Metavariables nest, so whole block shapes are matchable. |
+| 6 | `sg -p '$X == $X' -l python` | Reusing a name demands both sides be *the same* node. Finds self-comparisons. |
+| 7 | `sg -p '…' --debug-query=ast` | When a pattern silently matches nothing, this shows how it actually parsed. |
+| 8 | `sg -k function_definition -l python` | Match by tree-sitter node kind when no code snippet expresses it. |
+| 9 | `sg -p '…' --json=stream \| jq …` | Machine-readable output for scripting. Note `--json` needs `=`, not a space. |
+| 10 | `sg scan` / `sg new rule` | Promote a one-off pattern into a YAML rule with a message and severity. |
+
+`-C3` for context, `--globs` to scope by path, `--no-ignore hidden` to reach
+dotfiles. `sg outline <file>` dumps a symbol/import structure. Prefer `rg` for
+plain text, since ast-grep needs a parser and pays for it.
+
+---
+
+## direnv
+
+Hooked in `config.fish`, so entering a directory with an allowed `.envrc` loads
+its environment and leaving unloads it. Nothing runs until you allow it.
+
+| # | Command | Why |
+| --- | --- | --- |
+| 1 | `direnv allow` | Required after creating *or editing* any `.envrc`. The usual "why is nothing happening". |
+| 2 | `direnv edit` | Opens `.envrc` in `$EDITOR` and allows it on save, so no separate `allow`. |
+| 3 | `direnv reload` | Force a reload without touching the file. |
+| 4 | `direnv status` | What direnv thinks is loaded and why. First stop when it misbehaves. |
+| 5 | `PATH_add bin` | In `.envrc`: prepend a project-relative dir to `PATH`, no `export` needed. |
+| 6 | `dotenv` / `dotenv_if_exists` | Load an existing `.env` file instead of restating it. |
+| 7 | `source_up` | Inherit a parent directory's `.envrc` and extend it, for monorepos. |
+| 8 | `layout python` | Create and activate a per-project virtualenv automatically. |
+| 9 | `direnv exec DIR cmd` | Run one command under a directory's env without cd'ing there. |
+| 10 | `direnv deny` / `direnv prune` | Revoke a single `.envrc`; drop allow-records for files that are gone. |
+
+`watch_file <path>` makes direnv reload when another file changes (a lockfile,
+say). Add `.envrc` to git but keep secrets in a gitignored `.env` + `dotenv`.
 
 ---
 
@@ -214,3 +264,30 @@ Copy mode: repo edits are not live until applied. `sourceDir` is set in
 
 `chezmoi doctor` diagnoses a broken setup. `chezmoi apply --dry-run --verbose`
 shows a full diff plus which scripts would run.
+
+---
+
+## fish — the shell itself
+
+Coming from bash: command substitution is `(cmd)` not `$(cmd)`, `export FOO=bar`
+is `set -gx FOO bar`, and there is no `!!` (use `$history[1]`). `&&` and `||`
+work; `; and` / `; or` are the older spelling.
+
+| # | Command | Why |
+| --- | --- | --- |
+| 1 | `abbr --add gs 'git status'` | Expands *in the buffer* as you type, so history stays readable. Prefer over `alias`. |
+| 2 | `set -gx`, `set -g`, `set -U`, `set -l` | Exported global, global, universal (persists across shells), local. The whole scope model. |
+| 3 | `set -S PATH` | Show every scope a name exists in. The fix for "why is this value not what I set". |
+| 4 | `funced fish_prompt` / `funcsave` | Edit a function live, then persist it to `~/.config/fish/functions/`. |
+| 5 | `string match -r '(\d+)' $x` | Regex without sed. Also `string replace`, `split`, `join`, `trim`, `pad`. |
+| 6 | `path basename /a/b.txt` | Path manipulation builtin: `path dirname`, `extension`, `resolve`, `filter -x`. |
+| 7 | `math "2 + 3 * 4"` | Arithmetic without `$((…))` or `bc`. Floats work. |
+| 8 | `prevd` / `nextd` / `dirh` | Directory history, back and forward. `cd -` only goes back one. |
+| 9 | `echo $pipestatus` | Exit code of *every* stage in a pipe, not just the last. `$status` is the last. |
+| 10 | `argparse v/verbose 'n/name=' -- $argv` | Real flag parsing inside a function, populating `$_flag_verbose` etc. |
+
+`type -a cmd` says whether something is a function, builtin, or binary;
+`functions cmd` prints its source. `command -q cmd` is the quiet existence test
+this repo's `config.fish` guards everything with. `fish_add_path` beats
+`set PATH` since it dedupes. `fish -n file` syntax-checks without running, and
+`--no-config` starts a shell with none of this loaded, for bisecting breakage.

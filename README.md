@@ -5,7 +5,7 @@ mirrors `$HOME` using chezmoi's naming convention (`dot_vimrc` → `~/.vimrc`).
 
 ## New machine
 
-Homebrew first, by hand — then chezmoi, then everything else.
+Homebrew first, by hand. Then chezmoi, then everything else.
 
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -18,7 +18,7 @@ chezmoi init --apply git@github.com:hurrycane/dotfiles.git
 The last line clones the repo, runs
 `.chezmoiscripts/run_once_before_install-packages.sh` to brew-install the rest
 of the CLI stack, then writes every config file into place. That script does not
-install Homebrew — it exits with an error if `brew` is not on the PATH.
+install Homebrew. It exits with an error if `brew` is not on the PATH.
 
 To keep the working copy somewhere other than chezmoi's default
 (`~/.local/share/chezmoi`), point `sourceDir` at it in
@@ -103,8 +103,8 @@ colors that used to live in `fish_variables` are now set explicitly in
 Installed by the `run_once` script. Shell: fish, starship, direnv, tmux, neovim
 (`reattach-to-user-namespace` is optional; `tmux.conf` only uses it if present).
 
-CLI stack — see **[CHEATSHEET.md](CHEATSHEET.md)** for ten day-to-day uses each
-(it predates `ast-grep` and `wget`, which have no entries there yet):
+CLI stack — see **[CHEATSHEET.md](CHEATSHEET.md)** for ten day-to-day uses of
+each except `wget`:
 
 | tool | replaces | notes |
 | --- | --- | --- |
@@ -124,9 +124,9 @@ CLI stack — see **[CHEATSHEET.md](CHEATSHEET.md)** for ten day-to-day uses eac
 Only `ls` shadows its classic command — `cat`, `du`, `find` and `grep` are left
 as-is, since bat/dust/fd/rg take incompatible flags.
 
-Not in the list on purpose: `openjdk@21`. `config.fish` wires up its PATH,
+`openjdk@21` is deliberately absent. `config.fish` wires up its PATH,
 `JAVA_HOME` and `CPPFLAGS` when it is present, but a JDK is machine-specific, so
-the `test -d` guard just skips the block on machines without one.
+the `test -d` guard skips the block on machines without one.
 
 Brew-installed completions need no setup: fish already carries
 `/opt/homebrew/share/fish/vendor_completions.d` in `$fish_complete_path`.
