@@ -1,5 +1,10 @@
-" Init pathogen
-execute pathogen#infect()
+" No plugin manager: the pathogen bundle was retired along with the vim
+" submodules. Plugin work now happens in neovim instead.
+
+" fzf ships a vim plugin with the brew formula.
+if isdirectory('/opt/homebrew/opt/fzf')
+  set rtp+=/opt/homebrew/opt/fzf
+endif
 
 set tabstop=4
 set shiftwidth=4
@@ -81,8 +86,6 @@ cmap w!! %!sudo tee > /dev/null
 set nobackup
 set nowritebackup
 
-let NERDTreeIgnore = ['\.pyc$']
-
 " disable arrow keys
 " map <up> <nop>
 " map <down> <nop>
@@ -126,13 +129,7 @@ else
   map <C-l> <C-w>l
 endif
 
-let g:tmuxline_preset = 'tmux'
-
 let mapleader=","
 
-" NERDTree Mappins
-" Open Nerd Tree with <Leader>n
-map <Leader>n <esc>:NERDTreeToggle<cr>
-
-" Reveal current file in NERDTree with <Leader>r
-map <Leader>r <esc>:NERDTreeFind<cr>
+" Built-in file browser, in place of the retired NERDTree mappings.
+map <Leader>n <esc>:Lexplore<cr>

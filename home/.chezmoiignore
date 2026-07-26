@@ -1,0 +1,15 @@
+# Paths here are relative to the destination ($HOME), not the source directory.
+
+# Fish rewrites these itself -- universal variables and the 4.3 key-binding
+# migration shim. Letting chezmoi manage them means permanent spurious drift in
+# `chezmoi diff`. Colors that used to live in fish_variables are now set
+# explicitly in .config/fish/conf.d/colors.fish instead.
+.config/fish/fish_variables
+.config/fish/conf.d/fish_frozen_key_bindings.fish
+
+# Machine-local, deliberately untracked.
+.config/fish/functions/gcp.fish
+
+# Vim scratch state.
+.vim/.netrwhist
+.viminfo

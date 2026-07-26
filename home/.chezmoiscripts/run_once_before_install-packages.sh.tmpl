@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Installs the CLI stack before chezmoi writes any config that depends on it.
+# run_once_: re-runs only when this script's contents change.
+{{- if eq .chezmoi.os "darwin" }}
+set -euo pipefail
+
+# Homebrew is installed by hand before chezmoi -- see README.
+if ! command -v brew >/dev/null 2>&1; then
+    echo "==> Homebrew not found. Install it first, then re-run chezmoi apply." >&2
+    exit 1
+fi
+
+# formula names, not command names
+PACKAGES=(
+    fish
+    starship
+    direnv
+    tmux
+    neovim
+    eza
+    bat
+    fd
+    ripgrep
+    zoxide
+    fzf
+    atuin
+    git-delta
+    dust
+    chezmoi
+)
+
+missing=()
+for p in "${PACKAGES[@]}"; do
+    brew list --versions "$p" >/dev/null 2>&1 || missing+=("$p")
+done
+
+if [[ ${#missing[@]} -gt 0 ]]; then
+    echo "==> Installing: ${missing[*]}"
+    brew install "${missing[@]}"
+else
+    echo "==> All packages already installed"
+fi
+{{- else }}
+echo "==> Skipping package install: not macOS ({{ .chezmoi.os }})"
+{{- end }}
